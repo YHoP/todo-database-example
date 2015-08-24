@@ -43,7 +43,7 @@ public class Task {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO Tasks (description, categoryId) VALUES (:description, :categoryId)";
+      String sql = "INSERT INTO tasks (description, categoryId) VALUES (:description, :categoryId)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("description", this.description)
         .addParameter("categoryId", this.categoryId)
@@ -54,7 +54,7 @@ public class Task {
 
   public static Task find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM Tasks where id=:id";
+      String sql = "SELECT * FROM tasks where id=:id";
       Task task = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Task.class);
